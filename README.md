@@ -1,75 +1,54 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo_text.svg" width="320" alt="Nest Logo" /></a>
-</p>
+# nestjs-logger
 
-[travis-image]: https://api.travis-ci.org/nestjs/nest.svg?branch=master
-[travis-url]: https://travis-ci.org/nestjs/nest
-[linux-image]: https://img.shields.io/travis/nestjs/nest/master.svg?label=linux
-[linux-url]: https://travis-ci.org/nestjs/nest
-  
-  <p align="center">A progressive <a href="http://nodejs.org" target="blank">Node.js</a> framework for building efficient and scalable server-side applications, heavily inspired by <a href="https://angular.io" target="blank">Angular</a>.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore"><img src="https://img.shields.io/npm/dm/@nestjs/core.svg" alt="NPM Downloads" /></a>
-<a href="https://travis-ci.org/nestjs/nest"><img src="https://api.travis-ci.org/nestjs/nest.svg?branch=master" alt="Travis" /></a>
-<a href="https://travis-ci.org/nestjs/nest"><img src="https://img.shields.io/travis/nestjs/nest/master.svg?label=linux" alt="Linux" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#5" alt="Coverage" /></a>
-<a href="https://gitter.im/nestjs/nestjs?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=body_badge"><img src="https://badges.gitter.im/nestjs/nestjs.svg" alt="Gitter" /></a>
-<a href="https://opencollective.com/nest#backer"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec"><img src="https://img.shields.io/badge/Donate-PayPal-dc3d53.svg"/></a>
-  <a href="https://twitter.com/nestframework"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+[![Build Status](https://github.com/zman2013/nestjs-logger/workflows/Build%20and%20Release/badge.svg)](https://github.com/zman2013/nestjs-logger/workflows/Build%20and%20Release/badge.svg)
+[![Coverage Status](https://coveralls.io/repos/github/zman2013/nestjs-logger/badge.svg?branch=master)](https://coveralls.io/github/zman2013/nestjs-logger?branch=master)
+[![npm](https://img.shields.io/npm/v/nestjs-nestjs-logger.svg)](https://www.npmjs.com/package/@zman2013/nestjs-logger/)
 
-## Description
+> A log can be used as nestjs system logger and application logger. Logs can be rotated based on date('YYYY-MM-DD-HH'), size limit(1G), and old logs will be removed after 14 days. This module wrapps winston.
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## Usage
 
-## Installation
-
-```bash
-$ npm install
+```Install
+npm install nestjs-logger
 ```
 
-## Running the app
+### example as application logger
+```typescript
+const log = getLog(TAG) // TAG is a label usually as same as the class
 
-```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+log.verbose(`msg`)
+log.debug(`msg`)
+log.info(`msg`)
+log.warn(`msg`)
+log.error(`msg`)
 ```
 
-## Test
-
-```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+### example as nestjs system logger
+```typescript
+const app = await NestFactory.create(AppModule, {
+    logger: getLog('system').loggerService
+  });
 ```
 
-## Support
+### environment variables
+```js
+log level: 
+  process.env.LOG_LEVEL ?? 'info'
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+log dir: 
+  process.env.LOG_DIR ?? '.'
 
-## Stay in touch
+log date pattern: 
+  process.env.LOG_DATE_PATTERN ?? 'YYYY-MM-DD-HH'
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+log file max size: 
+  process.env.LOG_MAX_SIZE ?? '1024m'
+  Maximum size of the file after which it will rotate. This can be a number of bytes, or units of kb, mb, and gb. If using the units, add 'k', 'm', or 'g' as the suffix. The units need to directly follow the number.
 
-## License
+log file rotation policy: 
+  process.env.LOG_MAX_FILES ?? '14d' 
+  Maximum number of logs to keep. This can be a number of files or number of days. If using days, add 'd' as the suffix.
+```
 
-  Nest is [MIT licensed](LICENSE).
+## Github
+[https://github.com/zman2013/nestjs-logger](https://github.com/zman2013/nestjs-logger)
