@@ -1,8 +1,8 @@
-# nestjs-logger
+# nestjs-log
 
-[![Build Status](https://github.com/zman2013/nestjs-logger/workflows/Build%20and%20Release/badge.svg)](https://github.com/zman2013/nestjs-logger/workflows/Build%20and%20Release/badge.svg)
-[![Coverage Status](https://coveralls.io/repos/github/zman2013/nestjs-logger/badge.svg?branch=master)](https://coveralls.io/github/zman2013/nestjs-logger?branch=master)
-[![npm](https://img.shields.io/npm/v/nestjs-nestjs-logger.svg)](https://www.npmjs.com/package/@zman2013/nestjs-logger/)
+[![Build Status](https://github.com/zman2013/nestjs-log/workflows/Build%20and%20Release/badge.svg)](https://github.com/zman2013/nestjs-log/workflows/Build%20and%20Release/badge.svg)
+[![Coverage Status](https://coveralls.io/repos/github/zman2013/nestjs-log/badge.svg?branch=master)](https://coveralls.io/github/zman2013/nestjs-log?branch=master)
+[![npm](https://img.shields.io/npm/v/nestjs-log.svg)](https://www.npmjs.com/package/nestjs-log/)
 
 > A log can be used as nestjs system logger and application logger. Logs can be rotated based on date('YYYY-MM-DD-HH'), size limit(1G), and old logs will be removed after 14 days. This module wrapps winston.
 
