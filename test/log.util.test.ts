@@ -18,6 +18,7 @@ describe('log test', () => {
 
     it('basic', async () => {
         process.env.LOG_DIR = './test-app'
+        
 
         const log = getLog('test')
         log.info('log some thing')
