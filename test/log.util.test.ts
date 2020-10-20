@@ -17,8 +17,7 @@ describe('log test', () => {
     })
 
     it('basic', async () => {
-        process.env.LOG_DIR = '.'
-        process.env.APP_NAME = 'test-app'
+        process.env.LOG_DIR = './test-app'
 
         const log = getLog('test')
         log.info('log some thing')
@@ -31,8 +30,7 @@ describe('log test', () => {
     })
 
     it('loggerService', async () => {
-        process.env.LOG_DIR = '.'
-        process.env.APP_NAME = 'test-app'
+        process.env.LOG_DIR = './test-app'
         process.env.NODE_ENV = 'dev'
         process.env.LOG_LEVEL = 'verbose'
 
