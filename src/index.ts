@@ -19,7 +19,7 @@ export function getLog(label: string){
         });
 
     const level = process.env.LOG_LEVEL ?? 'info'
-    const dirname = process.env.LOG_DIR ?? '.'
+    const dirname = process.env.LOG_DIR ?? './log'
     const datePattern = process.env.LOG_DATE_PATTERN ?? 'YYYY-MM-DD-HH'
     const maxSize = process.env.LOG_MAX_SIZE ?? '1024m'
     const maxFiles = process.env.LOG_MAX_FILES ?? '14d'

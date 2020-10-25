@@ -36,7 +36,7 @@ log level:
   process.env.LOG_LEVEL ?? 'info'
 
 log dir: 
-  process.env.LOG_DIR ?? '.'
+  process.env.LOG_DIR ?? './log'
 
 log date pattern: 
   process.env.LOG_DATE_PATTERN ?? 'YYYY-MM-DD-HH'
