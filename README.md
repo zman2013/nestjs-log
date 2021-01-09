@@ -48,7 +48,7 @@ log file max size:
 log file rotation policy: 
   process.env.LOG_MAX_FILES ?? '14d' 
   Maximum number of logs to keep. This can be a number of files or number of days. If using days, add 'd' as the suffix.
-```
 
-## Github
-[https://github.com/zman2013/nestjs-logger](https://github.com/zman2013/nestjs-logger)
+log to console:
+  set process.env.NODE_ENV to 'dev'
+```
