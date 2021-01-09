@@ -21,6 +21,10 @@ log.debug(`msg`)
 log.info(`msg`)
 log.warn(`msg`)
 log.error(`msg`)
+
+// also support splat
+log.info('msg', any1, any2, any3)
+log.info(obj)
 ```
 
 ### example as nestjs system logger

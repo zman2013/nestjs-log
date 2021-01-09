@@ -18,7 +18,6 @@ describe('log test', () => {
 
     it('basic', async () => {
         process.env.LOG_DIR = './test-app'
-        
 
         const log = getLog('test')
         log.info('log some thing')
@@ -28,6 +27,32 @@ describe('log test', () => {
         const result = buffer.toString('UTF-8')
         
         expect(result).toContain("2020-01-01T08:00:00.000 info [test]: log some thing")
+    })
+
+    it('splat', async () => {
+      process.env.LOG_DIR = './test-app'
+
+      const log = getLog('test')
+      log.info('log some thing', 'splat1', 'splat2')
+
+      const buffer = await fs.readFile('test-app/app.2020-01-01-08')
+
+      const result = buffer.toString('UTF-8')
+      
+      expect(result).toContain("2020-01-01T08:00:00.000 info [test]: log some thing splat1 splat2")
+    })
+
+    it('object', async () => {
+      process.env.LOG_DIR = './test-app'
+      
+      const log = getLog('test')
+      log.info({text: 'abc'})
+
+      const buffer = await fs.readFile('test-app/app.2020-01-01-08')
+
+      const result = buffer.toString('UTF-8')
+      
+      expect(result).toContain("2020-01-01T08:00:00.000 info [test]:  { text: 'abc' }")
     })
 
     it('loggerService', async () => {
@@ -48,10 +73,10 @@ describe('log test', () => {
         const result = buffer.toString('UTF-8')
         
         expect(result).toContain(
-            `2020-01-01T08:00:00.000 info [test]: log
-2020-01-01T08:00:00.000 error [test]: error
-2020-01-01T08:00:00.000 warn [test]: warn
-2020-01-01T08:00:00.000 verbose [test]: verbose`)
+            `2020-01-01T08:00:00.000 info [test]: log test
+2020-01-01T08:00:00.000 error [test]: error trace test
+2020-01-01T08:00:00.000 warn [test]: warn test
+2020-01-01T08:00:00.000 verbose [test]: verbose test`)
     
     })
 })

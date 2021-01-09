@@ -1,6 +1,6 @@
 {
   "name": "nestjs-log",
-  "version": "1.3.0",
+  "version": "2.0.1",
   "description": "",
   "author": "",
   "private": false,
@@ -23,7 +23,7 @@
   "scripts": {
     "prebuild": "rimraf dist",
     "build": "nest build",
-    "publish": "npm run build && npm publish",
+    "release": "npm run build && npm publish",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start",
     "start:dev": "nest start --watch",

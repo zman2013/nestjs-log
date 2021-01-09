@@ -4,6 +4,26 @@ import { createLogger, format, Logger } from 'winston'
 import 'winston-daily-rotate-file'
 import { Console, DailyRotateFile } from "winston/lib/winston/transports";
 
+const util = require('util');
+
+function transform(info: any) {
+  const args = info[Symbol.for('splat')];
+  if (args) { 
+    if(typeof info.message === 'object'){
+      info.message = util.format('', info.message, ...args); 
+    }else{
+      info.message = util.format(info.message, ...args); 
+    }
+    
+  }
+  else{
+    if(typeof info.message === 'object'){
+      info.message = util.format('', info.message)
+    }
+  }
+  return info;
+}
+
 
 interface MyLogger extends Logger{
     loggerService: LoggerService
@@ -33,10 +53,10 @@ export function getLog(label: string){
         maxSize: maxSize,
         maxFiles: maxFiles,
         format: format.combine(
-            format.splat(),
             format.timestamp({
                 format: timezoned
             }),
+            {transform},
             myFormat
             )
     })
@@ -48,10 +68,10 @@ export function getLog(label: string){
     if( process.env.NODE_ENV === 'dev' ){
         logger.add(new Console({
             format: format.combine(
-                format.splat(),
                 format.timestamp({
                     format: timezoned
                 }),
+                {transform},
                 myFormat
                 )
         }))
@@ -59,19 +79,19 @@ export function getLog(label: string){
 
     logger.loggerService = {
         log(message: any, context?: string) {
-            logger.info(message, {label: context})
+            logger.info(message, context)
         },
         error(message: any, trace?: string, context?: string) {
-            logger.error(message, trace, {label: context})
+            logger.error(message, trace, context)
         },
         warn(message: any, context?: string) {
-            logger.warn(message, {label: context})
+            logger.warn(message, context)
         },
         debug(message: any, context?: string) {
-            logger.debug(message, {label: context})
+            logger.debug(message, context)
         },
         verbose(message: any, context?: string) {
-            logger.verbose(message, {label: context})
+            logger.verbose(message, context)
         }
     }
 
