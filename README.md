@@ -9,7 +9,7 @@
 ## Usage
 
 ```Install
-npm install nestjs-logger
+npm install nestjs-log
 ```
 
 ### example as application logger
