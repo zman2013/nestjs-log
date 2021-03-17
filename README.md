@@ -45,6 +45,9 @@ log dir:
 log date pattern: 
   process.env.LOG_DATE_PATTERN ?? 'YYYY-MM-DD-HH'
 
+log file name:
+  process.env.LOG_FILE_NAME ?? 'app'
+
 log file max size: 
   process.env.LOG_MAX_SIZE ?? '1024m'
   Maximum size of the file after which it will rotate. This can be a number of bytes, or units of kb, mb, and gb. If using the units, add 'k', 'm', or 'g' as the suffix. The units need to directly follow the number.

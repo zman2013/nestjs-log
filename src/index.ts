@@ -38,6 +38,7 @@ export function getLog(label: string){
         return `${timestamp} ${level} [${label}]: ${message}`;
         });
 
+    const filename = process.env.LOG_FILE_NAME ?? 'app'
     const level = process.env.LOG_LEVEL ?? 'info'
     const dirname = process.env.LOG_DIR ?? './log'
     const datePattern = process.env.LOG_DATE_PATTERN ?? 'YYYY-MM-DD-HH'
@@ -45,13 +46,13 @@ export function getLog(label: string){
     const maxFiles = process.env.LOG_MAX_FILES ?? '14d'
 
     const transport = new DailyRotateFile({
-        level: level,
-        filename: 'app',
-        dirname: dirname,
-        datePattern: datePattern,
+        level,
+        filename,
+        dirname,
+        datePattern,
         zippedArchive: true,
-        maxSize: maxSize,
-        maxFiles: maxFiles,
+        maxSize,
+        maxFiles,
         format: format.combine(
             format.timestamp({
                 format: timezoned
