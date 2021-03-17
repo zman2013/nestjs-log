@@ -38,7 +38,7 @@ export function getLog(label: string){
         return `${timestamp} ${level} [${label}]: ${message}`;
         });
 
-    const filename = process.env.LOG_FILE_NAME ?? 'app'
+    const filename = process.env.LOG_FILE_NAME ?? 'app.%DATE%.log'
     const level = process.env.LOG_LEVEL ?? 'info'
     const dirname = process.env.LOG_DIR ?? './log'
     const datePattern = process.env.LOG_DATE_PATTERN ?? 'YYYY-MM-DD-HH'

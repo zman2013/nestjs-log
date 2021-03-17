@@ -22,7 +22,7 @@ describe('log test', () => {
         const log = getLog('test')
         log.info('log some thing')
 
-        const buffer = await fs.readFile('test-app/app.2020-01-01-08')
+        const buffer = await fs.readFile('test-app/app.2020-01-01-08.log')
 
         const result = buffer.toString('UTF-8')
         
@@ -35,7 +35,7 @@ describe('log test', () => {
       const log = getLog('test')
       log.info('log some thing', 'splat1', 'splat2')
 
-      const buffer = await fs.readFile('test-app/app.2020-01-01-08')
+      const buffer = await fs.readFile('test-app/app.2020-01-01-08.log')
 
       const result = buffer.toString('UTF-8')
       
@@ -48,7 +48,7 @@ describe('log test', () => {
       const log = getLog('test')
       log.info({text: 'abc'})
 
-      const buffer = await fs.readFile('test-app/app.2020-01-01-08')
+      const buffer = await fs.readFile('test-app/app.2020-01-01-08.log')
 
       const result = buffer.toString('UTF-8')
       
@@ -68,7 +68,7 @@ describe('log test', () => {
         log.debug('debug', 'test')
         log.verbose('verbose', 'test')
 
-        const buffer = await fs.readFile('test-app/app.2020-01-01-08')
+        const buffer = await fs.readFile('test-app/app.2020-01-01-08.log')
 
         const result = buffer.toString('UTF-8')
         
