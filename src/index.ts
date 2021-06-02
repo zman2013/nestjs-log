@@ -68,6 +68,7 @@ export function getLog(label: string){
 
     if( process.env.NODE_ENV === 'dev' ){
         logger.add(new Console({
+            level,
             format: format.combine(
                 format.timestamp({
                     format: timezoned
